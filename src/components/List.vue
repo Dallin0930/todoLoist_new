@@ -7,7 +7,7 @@
                         <span v-if="!item.isEdited">{{item.content}}</span>
                         <input v-model="item.content" @blur="save(item,index)" v-else/>
                 </span>
-                <button @click="remove(item,index)">Remove</button>
+                <button style="margin-left:80px" @click="remove(item,index)">delete</button>
             </li>
         </ol>
     </div>
@@ -28,23 +28,12 @@ import axios from 'axios'
             
             edit: function (item) {
                 item.isEdited = true;
-                // this.$store.commit('updateItem',{item:item});
                 this.$store.dispatch('updateItem',item);
             },
            
             save: function (item) {
                 item.isEdited = false; 
                 this.$store.dispatch('updateItem',item);
-                
-            //     axios
-            //     .put('http://localhost:3001/todos/'+item.id,{item:item})
-            //     .then(response => {
-            //         this.$store.commit('updateItem',[response.data])
-            //         })
-            //     .catch(function (error) { // 请求失败处理
-            //         console.log(error)
-            //     })
-                // this.$store.commit('updateItem',{item:item});
             }
         },
         computed: {
